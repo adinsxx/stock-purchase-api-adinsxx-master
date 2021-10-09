@@ -3,6 +3,7 @@ package edu.wctc.stockpurchase.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 

@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.JsonPatchException;
 import edu.wctc.stockpurchase.entity.StockPurchase;
+import edu.wctc.stockpurchase.exception.ResourceNotFoundException;
 import edu.wctc.stockpurchase.repo.StockPurchaseRepository;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +36,7 @@ public class StockPurchaseService {
         if(stockRepo.existsById(id)){
             stockRepo.deleteById(id);
         } else {
-            throw new ResourceNotFoundException("Student", "id", id);
+            throw new ResourceNotFoundException("StockPurchase", "id", id);
         }
     }
 
@@ -44,7 +44,7 @@ public class StockPurchaseService {
         if (stockRepo.existsById(stock.getId())){
             return stockRepo.save(stock);
         } else {
-            throw new ResourceNotFoundException("Student", "id", stock.getId());
+            throw new ResourceNotFoundException("Stock", stock.getId());
         }
     }
 
@@ -59,6 +59,6 @@ public class StockPurchaseService {
     }
 
     public StockPurchase getStock(int id) throws ResourceNotFoundException{
-        return stockRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Stock", "id", id));
+        return stockRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("StockPurchase", "id", id));
     }
 }
